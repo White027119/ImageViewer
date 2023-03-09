@@ -2,8 +2,8 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path('upload-image/', views.upload_image, name='upload-image'),
-    path('get-images/', views.get_images, name='get-images'),
-    path('get-image/<str:pk>/', views.get_image, name='get-image'),
-    path('create-link/<str:pk>/', views.create_link, name='create-link'),
+    path('login-user/', views.login_user, name='login-user'),
+    path('logout-user/', views.logout_user, name='logout-user'),
+    path('image-view/', views.ImageView.as_view(), name='image-view'),
+    path('create_link/<int:id>/<int:size>/<int:time>', views.create_exp_link, name='create-link'),
 ]

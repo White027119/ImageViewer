@@ -3,16 +3,15 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', null=False, )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.title
-    
+
 class Plan(models.Model):
     title = models.CharField(max_length=100)
-    max_height = models.IntegerField()
+    sizes = models.TextField()
     create_link = models.BooleanField(default=False)
-    exp_range = models.IntegerField()
+
+    exp_range = models.TextField(null=True, blank=True)
     def __str__(self):
         return self.title
     
@@ -26,5 +25,6 @@ class ExpLink(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     link = models.CharField(max_length=100)
     exp_date = models.IntegerField()
+    size = models.IntegerField()
     def __str__(self):
         return self.link

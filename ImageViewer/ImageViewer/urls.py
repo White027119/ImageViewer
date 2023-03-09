@@ -18,9 +18,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from api import urls as api_urls
+from api.views import image_viewer
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(api_urls)),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('image/<str:id>', image_viewer, name='link-viewer'),
+    path('image/<int:id>/<str:size>', image_viewer, name='image-viewer'),
+] 
